@@ -1,0 +1,13 @@
+[package]
+name = "sha256-in-wasm"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+ewv-guest = { path = "../abi" }
+sha2 = { version = "0.10", default-features = false }
