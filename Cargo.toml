@@ -5,10 +5,12 @@ edition = "2024"
 rust-version = "1.86"
 description = "A deterministic, fuel-metered WebAssembly runtime for proof verifiers"
 license = "MIT"
-repository = "https://github.com/Naveen-6087/pandora"
+repository = "https://github.com/Naveen-6087/eth-wasm-verifier"
+documentation = "https://docs.rs/eth-wasm-verifier"
+readme = "README.md"
 keywords = ["ethereum", "wasm", "verifier", "deterministic", "proof"]
 categories = ["wasm", "cryptography::cryptocurrencies", "command-line-utilities"]
-exclude = ["/guests/target"]
+exclude = ["/guests/target", "/.github", "/target"]
 
 [features]
 default = ["cli"]
@@ -38,3 +40,6 @@ wat = "1.220"
 [[bench]]
 name = "verify"
 harness = false
+
+[package.metadata.docs.rs]
+all-features = true
