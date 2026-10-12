@@ -1,5 +1,10 @@
 # eth-wasm-verifier
 
+[![crates.io](https://img.shields.io/crates/v/eth-wasm-verifier)](https://crates.io/crates/eth-wasm-verifier)
+[![docs.rs](https://img.shields.io/docsrs/eth-wasm-verifier)](https://docs.rs/eth-wasm-verifier)
+[![CI](https://github.com/Naveen-6087/eth-wasm-verifier/actions/workflows/ci.yml/badge.svg)](https://github.com/Naveen-6087/eth-wasm-verifier/actions/workflows/ci.yml)
+[![MSRV 1.86](https://img.shields.io/badge/MSRV-1.86-blue)](https://blog.rust-lang.org/2025/04/03/Rust-1.86.0/)
+
 A deterministic, resource-bounded WebAssembly runtime for proof verifiers,
 in Rust. Verifiers are small Wasm modules with a fixed ABI. The runtime
 validates them strictly before running anything, executes each call in a
@@ -106,6 +111,19 @@ fn check() -> Verdict {
 }
 
 ewv_guest::verifier!(check, r#"{"name":"sha256-preimage","version":"0.1.0"}"#);
+```
+
+## Install
+
+```sh
+cargo install eth-wasm-verifier
+```
+
+As a library, without the CLI and its `clap` dependency:
+
+```toml
+[dependencies]
+eth-wasm-verifier = { version = "0.1", default-features = false }
 ```
 
 ## Usage

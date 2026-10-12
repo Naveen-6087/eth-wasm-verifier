@@ -5,19 +5,30 @@ edition = "2024"
 rust-version = "1.86"
 description = "A deterministic, fuel-metered WebAssembly runtime for proof verifiers"
 license = "MIT"
-repository = "https://github.com/Naveen-6087/pandora"
+repository = "https://github.com/Naveen-6087/eth-wasm-verifier"
+documentation = "https://docs.rs/eth-wasm-verifier"
+readme = "README.md"
 keywords = ["ethereum", "wasm", "verifier", "deterministic", "proof"]
 categories = ["wasm", "cryptography::cryptocurrencies", "command-line-utilities"]
-exclude = ["/guests/target"]
+exclude = ["/guests/target", "/.github", "/target"]
+
+[features]
+default = ["cli"]
+cli = ["dep:clap"]
 
 [dependencies]
-clap = { version = "4.5", features = ["derive"] }
+clap = { version = "4.5", features = ["derive"], optional = true }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 sha2 = "0.10"
 sha3 = "0.10"
 thiserror = "2.0"
 wasmi = { version = "2", default-features = false, features = ["std", "validate", "stable", "deterministic", "portable-dispatch"] }
+
+[[bin]]
+name = "eth-wasm-verifier"
+path = "src/main.rs"
+required-features = ["cli"]
 
 [dev-dependencies]
 criterion = { version = "0.5", default-features = false, features = ["cargo_bench_support"] }
@@ -29,3 +40,6 @@ wat = "1.220"
 [[bench]]
 name = "verify"
 harness = false
+
+[package.metadata.docs.rs]
+all-features = true
