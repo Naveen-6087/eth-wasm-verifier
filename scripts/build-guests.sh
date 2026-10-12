@@ -9,7 +9,9 @@ root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 export RUSTFLAGS="-C link-arg=-zstack-size=262144 --remap-path-prefix=$root=/ewv --remap-path-prefix=${CARGO_HOME:-$HOME/.cargo}=/cargo"
 export CARGO_INCREMENTAL=0
 
-cargo build --release --locked --target wasm32-unknown-unknown --manifest-path "$root/guests/Cargo.toml"
+# Run from guests/ so rustup applies guests/rust-toolchain.toml.
+cd "$root/guests"
+cargo build --release --locked --target wasm32-unknown-unknown
 
 mkdir -p "$root/verifiers"
 for name in sha256-preimage merkle-branch sha256-in-wasm; do
